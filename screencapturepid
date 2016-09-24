@@ -1,0 +1,15 @@
+#!/bin/bash
+
+WINDOW_ID=$(./.build/debug/getwindowid $1)
+FILE=$2
+
+record() {
+  screencapture -l$WINDOW_ID -t jpg $FILE
+  sleep 1
+  echo -n "."
+  record
+}
+
+echo "Recording"
+record
+

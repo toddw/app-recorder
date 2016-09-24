@@ -10,10 +10,10 @@ func getWindowId(pid:Int) {
 
   for window in windowList {
       let win = (window as! NSDictionary)
-      let layer = win.value(forKey: "kCGWindowLayer") as! Int
       let windowPID = win.value(forKey: "kCGWindowOwnerPID") as! Int
       if (windowPID == pid) {
-          if (layer == 0) {
+          let bounds = win.value(forKey: "kCGWindowBounds") as! NSDictionary
+          if (bounds.value(forKey: "Y") as! Int != 0) {
               mainWindow = win
           }
       }
